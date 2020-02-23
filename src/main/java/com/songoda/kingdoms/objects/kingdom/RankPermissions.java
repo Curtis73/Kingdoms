@@ -40,7 +40,7 @@ public class RankPermissions {
 		this.invade = getDefaultValue(node + ".invade");
 		this.invite = getDefaultValue(node + ".invite");
 		this.build = getDefaultValue(node + ".build");
-		this.kick = getDefaultValue(node + ".enemy");
+		this.enemy = getDefaultValue(node + ".enemy");
 		this.kick = getDefaultValue(node + ".kick");
 		this.lore = getDefaultValue(node + ".lore");
 	}

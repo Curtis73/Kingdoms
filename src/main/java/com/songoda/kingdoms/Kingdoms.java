@@ -76,6 +76,7 @@ public class Kingdoms extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		managerHandler.getManagers().forEach(manager -> manager.onDisable());
+		
 	}
 
 	public <T extends ExternalManager> Optional<T> getExternalManager(String name, Class<T> expected) {
@@ -92,6 +93,7 @@ public class Kingdoms extends JavaPlugin {
 	public Optional<FileConfiguration> getConfiguration(String configuration) {
 		return Optional.ofNullable(configurations.get(configuration));
 	}
+	
 
 	/**
 	 * Grab a Manager by it's name and create it's expected class if not present.

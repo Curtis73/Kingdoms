@@ -21,7 +21,6 @@ import com.songoda.kingdoms.manager.inventories.AnvilMenu;
 import com.songoda.kingdoms.manager.inventories.InventoryManager;
 import com.songoda.kingdoms.manager.inventories.KingdomInventory;
 import com.songoda.kingdoms.manager.inventories.PagesInventory;
-import com.songoda.kingdoms.manager.inventories.SearchManager;
 import com.songoda.kingdoms.manager.managers.KingdomManager;
 import com.songoda.kingdoms.objects.kingdom.Kingdom;
 import com.songoda.kingdoms.objects.kingdom.OfflineKingdom;
@@ -54,11 +53,11 @@ public class ListMenu extends KingdomInventory {
 		inventory.setItem(3, new ItemStackBuilder(section.getConfigurationSection("alphabetical")).build());
 		setAction(inventory, uuid, 3, event -> new ListSortingMenu("alphabetical").open(kingdomPlayer));
 		inventory.setItem(4, new ItemStackBuilder(section.getConfigurationSection("search")).build());
-		setAction(inventory, uuid, 4, event -> openSearch(kingdomPlayer));
+		//setAction(inventory, uuid, 4, event -> openSearch(kingdomPlayer));
 		return inventory;
 	}
 	
-	public void openSearch(KingdomPlayer kingdomPlayer) {
+	/*public void openSearch(KingdomPlayer kingdomPlayer) {
 		Player p = kingdomPlayer.getPlayer();
 		ItemStack search = new ItemStackBuilder(inventories.getConfigurationSection("search.search-item"))
 				.setPlaceholderObject(kingdomPlayer)
@@ -78,7 +77,7 @@ public class ListMenu extends KingdomInventory {
 	    .title("Search Kingdom")
 	    .plugin(instance)
 	    .open(p);
-	}
+	}*/
 	
 
 	private class ListSortingMenu extends PagesInventory {

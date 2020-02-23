@@ -27,56 +27,56 @@ public class AnvilMenu {
 
 	private static VersionWrapper WRAPPER = new VersionMatcher().match();
 	private final ListenUp listener = new ListenUp();
-	private final Consumer<String> consumer;
-	private final Inventory inventory;
-	private final int containerId;
-	private final Player holder;
+	//private final Consumer<String> consumer;
+	//private final Inventory inventory;
+	//private final int containerId;
+	//private final Player holder;
 	private boolean open;
 
-	public AnvilMenu(ItemStack searchItem, Player holder, Consumer<String> consumer) {
+	//public AnvilMenu(ItemStack searchItem, Player holder, Consumer<String> consumer) {
 
-		this.consumer = consumer;
-		this.holder = holder;
+		//this.consumer = consumer;
+		//this.holder = holder;
 
-		WRAPPER.handleInventoryCloseEvent(holder);
-		WRAPPER.setActiveContainerDefault(holder);
+		//WRAPPER.handleInventoryCloseEvent(holder);
+		//WRAPPER.setActiveContainerDefault(holder);
 
-		Bukkit.getPluginManager().registerEvents(listener, Kingdoms.getInstance());
+		//Bukkit.getPluginManager().registerEvents(listener, Kingdoms.getInstance());
 
-		Object container = WRAPPER.newContainerAnvil(holder);
+		//Object container = WRAPPER.newContainerAnvil(holder);
 
-		inventory = WRAPPER.toBukkitInventory(container);
-		inventory.setItem(0, searchItem);
+		//inventory = WRAPPER.toBukkitInventory(container);
+		//inventory.setItem(0, searchItem);
 
-		containerId = WRAPPER.getNextContainerId(holder);
-		WRAPPER.sendPacketOpenWindow(holder, containerId);
-		WRAPPER.setActiveContainer(holder, container);
-		WRAPPER.setActiveContainerId(container, containerId);
-		WRAPPER.addActiveContainerSlotListener(container, holder);
+		//containerId = WRAPPER.getNextContainerId(holder);
+		//WRAPPER.sendPacketOpenWindow(holder, containerId);
+		//WRAPPER.setActiveContainer(holder, container);
+		//WRAPPER.setActiveContainerId(container, containerId);
+		//WRAPPER.addActiveContainerSlotListener(container, holder);
 		
-		open = true;
-	}
+		//open = true;
+	//}
 
 	private class ListenUp implements Listener {
 
 		@EventHandler
 		public void onInventoryClick(InventoryClickEvent event) {
-			if (!event.getInventory().equals(inventory))
+			//if (!event.getInventory().equals(inventory))
 				return;
-			event.setCancelled(true);
-			if (event.getRawSlot() != 2)
-				return;
-			 ItemStack clicked = inventory.getItem(2);
-             if (clicked == null || clicked.getType() == Material.AIR)
-            	 return;
-            consumer.accept(clicked.hasItemMeta() ? clicked.getItemMeta().getDisplayName() : clicked.getType().toString());
-			closeInventory();
+			//event.setCancelled(true);
+			//if (event.getRawSlot() != 2)
+			//	return;
+			 //ItemStack clicked = inventory.getItem(2);
+             //if (clicked == null || clicked.getType() == Material.AIR)
+            //	 return;
+            //consumer.accept(clicked.hasItemMeta() ? clicked.getItemMeta().getDisplayName() : clicked.getType().toString());
+			//closeInventory();
 		}
 
 		@EventHandler
 		public void onInventoryClose(InventoryCloseEvent event) {
-			if (event.getInventory().equals(inventory))
-				closeInventory();
+			//if (event.getInventory().equals(inventory))
+		//		closeInventory();
 		}
 
 	}
@@ -86,14 +86,14 @@ public class AnvilMenu {
 			return;
 		open = false;
 		
-		WRAPPER.handleInventoryCloseEvent(holder);
-		WRAPPER.setActiveContainerDefault(holder);
-		WRAPPER.sendPacketCloseWindow(holder, containerId);
-		HandlerList.unregisterAll(listener);
+	//	WRAPPER.handleInventoryCloseEvent(holder);
+	//	WRAPPER.setActiveContainerDefault(holder);
+	//	WRAPPER.sendPacketCloseWindow(holder, containerId);
+	//	HandlerList.unregisterAll(listener);
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
+	//public Inventory getInventory() {
+	//	return inventory;
+	//}
 
 }

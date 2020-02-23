@@ -33,8 +33,9 @@ public class WorldGuardManager extends ExternalManager implements WorldGuardKing
 	@Override
 	public boolean canClaim(Location location) {
 		if (worldGuard == null)
-			return false;
-		return worldGuard.canClaim(location);
+			return true; //return false;
+		//return worldGuard.canClaim(location);
+		return true;
 	}
 
 	@Override

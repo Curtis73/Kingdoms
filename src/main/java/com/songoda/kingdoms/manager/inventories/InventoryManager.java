@@ -52,6 +52,7 @@ public class InventoryManager extends Manager {
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
+		//event.setCancelled(true);
 		Player player = (Player) event.getWhoClicked();
 		UUID uuid = player.getUniqueId();
 		if (!opened.keySet().stream().anyMatch(test -> test.equals(uuid)))
