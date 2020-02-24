@@ -572,6 +572,8 @@ public class LandManager extends Manager {
 			OfflineKingdom owner = optional.get();
 			if (!owner.equals(kingdom))
 				continue;
+			if (getLand(kingdom.getNexusLocation().getChunk()) == land)
+				continue;
 			LandUnclaimEvent event = new LandUnclaimEvent(land, kingdom);
 			Bukkit.getPluginManager().callEvent(event);
 			if (event.isCancelled())
