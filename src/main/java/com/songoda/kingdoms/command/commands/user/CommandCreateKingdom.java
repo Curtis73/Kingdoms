@@ -83,7 +83,7 @@ public class CommandCreateKingdom extends AbstractCommand {
 		int cost = configuration.getInt("economy.kingdom-create-cost", 0);
 		if (configuration.getBoolean("economy.enabled") && vaultManager.isPresent()) {
 			if (cost > 0 && vaultManager.get().getBalance(player) < cost) {
-				new MessageBuilder("commands.economy-not-enough")
+				new MessageBuilder("commands.create-kingdom.economy-not-enough")
 						.setPlaceholderObject(kingdomPlayer)
 						.replace("%kingdom%", name)
 						.replace("%name%", name)
