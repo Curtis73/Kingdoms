@@ -94,16 +94,18 @@ public class DefaultPlaceholders {
 				return kingdom.getResourcePoints() + "";
 			}
 		});
-		Placeholders.registerPlaceholder(new Placeholder<OfflineKingdom>("%online-state%", "%online%") {
+		Placeholders.registerPlaceholder(new Placeholder<OfflineKingdom>("%online-state%", "%online%") { //FIXME displaying online whether they're offline or not
 			@Override
 			public String replace(OfflineKingdom kingdom) {
-				if (kingdom.isOnline())
+				if (kingdom.isOnline()) {
 					return new MessageBuilder(false, "kingdoms.online")
 							.setKingdom(kingdom)
 							.get();
-				return new MessageBuilder(false, "kingdoms.offline")
-						.setKingdom(kingdom)
-						.get();
+				} else {
+					return new MessageBuilder(false, "kingdoms.offline")
+							.setKingdom(kingdom)
+							.get();
+				}
 			}
 		});
 		Placeholders.registerPlaceholder(new Placeholder<OfflineKingdom>("%description%", "%lore%") {

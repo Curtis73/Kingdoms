@@ -563,6 +563,7 @@ public class LandManager extends Manager {
 	 * 
 	 * @param chunk Chunk to unclaim.
 	 * @param kingdom Kingdom whom is unclaiming.
+	 * @param deleteNexus Delete nexus land?
 	 */
 	public void unclaimLand(OfflineKingdom kingdom, Land... lands) {
 		for (Land land : lands) {
@@ -572,8 +573,8 @@ public class LandManager extends Manager {
 			OfflineKingdom owner = optional.get();
 			if (!owner.equals(kingdom))
 				continue;
-			if (getLand(kingdom.getNexusLocation().getChunk()) == land)
-				continue;
+			//if (getLand(kingdom.getNexusLocation().getChunk()) == land) - skip the nexus chunk
+			//	continue;
 			LandUnclaimEvent event = new LandUnclaimEvent(land, kingdom);
 			Bukkit.getPluginManager().callEvent(event);
 			if (event.isCancelled())
@@ -604,7 +605,7 @@ public class LandManager extends Manager {
 			Optional<OfflineKingdom> kingdom = land.getKingdomOwner();
 			if (!kingdom.isPresent())
 				continue;
-			unclaimLand(kingdom.get(), land);
+			unclaimLand(kingdom.get(), land); //True because if a kingdom loses an invasion, we want them to lose the nexus.
 		}
 	}
 
@@ -618,7 +619,7 @@ public class LandManager extends Manager {
 	}
 
 	/**
-	 * Unclaim ALL existing land in database
+	 * Unclaim ALL existing land & wipe all nexuses in database
 	 * Use at own risk.
 	 */
 	public void unclaimAllExistingLand() {
@@ -661,7 +662,7 @@ public class LandManager extends Manager {
 	/**
 	 * Unclaim all lands not connected to the kingdom, and with no structures. TODO It checks for only structures though...
 	 * 
-	 * @param kingdom Kingdom owner
+	 * @param kingdom Kingdom owner 
 	 * @return number of lands unclaimed
 	 */
 	public int unclaimDisconnectedLand(Kingdom kingdom) {

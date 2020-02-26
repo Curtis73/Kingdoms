@@ -236,7 +236,7 @@ public class KingdomManager extends Manager {
 	 * @param kingdom OfflineKingdom instance
 	 * @return true if online/loaded; false if not.
 	 */
-	public boolean isOnline(OfflineKingdom kingdom) {
+	public boolean isOnline(OfflineKingdom kingdom) { //TODO: Fix this :)		
 		return Optional.ofNullable(cache.getIfPresent(kingdom.getName().toLowerCase(Locale.US)))
 				.map(future -> {
 					try {

@@ -19,7 +19,7 @@ public class CommandInfo extends AbstractCommand {
 //INFO shows information about YOUR kingdom (or other KINGDOMS), and takes a KINGDOM as input.
 //SHOW shows information about OTHER PLAYER's kingdoms, and takes a PLAYER'S username as input.
 	public CommandInfo() {
-		super(false, "info", "i");
+		super(false, "info", "i", "show");
 	}
 
 	@Override

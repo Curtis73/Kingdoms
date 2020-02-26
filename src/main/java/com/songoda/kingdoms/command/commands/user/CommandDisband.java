@@ -26,6 +26,7 @@ public class CommandDisband extends AbstractCommand {
 		Player player = (Player) sender;
 		KingdomPlayer kingdomPlayer = instance.getManager(PlayerManager.class).getKingdomPlayer(player);
 		Kingdom kingdom = kingdomPlayer.getKingdom();
+		KingdomManager kingdomManager = instance.getManager(KingdomManager.class);
 		if (kingdom == null) {
 			new MessageBuilder("commands.disband.no-kingdom")
 					.setPlaceholderObject(kingdomPlayer)
@@ -50,7 +51,7 @@ public class CommandDisband extends AbstractCommand {
 						.send(kingdomPlayer);
 				return;
 			}
-			instance.getManager(KingdomManager.class).deleteKingdom(kingdom.getName());
+			kingdomManager.deleteKingdom(kingdom.getName());
 		});
 		return ReturnType.SUCCESS;
 	}

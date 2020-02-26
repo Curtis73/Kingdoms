@@ -266,7 +266,7 @@ public class OfflineKingdom {
 	}
 
 	public boolean isOnline() {
-		return instance.getManager(KingdomManager.class).isOnline(this);
+		return instance.getManager(KingdomManager.class).isOnline(this); //SLEEP I changed this, if it doesnt fix then change back.
 	}
 
 	public Kingdom getKingdom() {
@@ -296,10 +296,11 @@ public class OfflineKingdom {
 	public Set<OfflineKingdomPlayer> getMembers() {
 		PlayerManager playerManager = instance.getManager(PlayerManager.class);
 		return members.parallelStream()
-				.map(uuid -> playerManager.getKingdomPlayer(uuid))
+				.map(uuid -> playerManager.getOfflineKingdomPlayer(uuid)) //TODO: not a todo but I changed getKingdomPlayer to getOfflineKingdomPlayer. SLEEP.
 				.filter(optional -> optional.isPresent())
 				.map(optional -> optional.get())
 				.collect(Collectors.toSet());
+		
 	}
 
 	public void setShieldTime(long seconds) {

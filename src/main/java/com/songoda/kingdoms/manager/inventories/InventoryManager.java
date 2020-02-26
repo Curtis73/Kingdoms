@@ -1,5 +1,6 @@
 package com.songoda.kingdoms.manager.inventories;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -23,6 +24,7 @@ import com.songoda.kingdoms.manager.inventories.KingdomInventory.SlotAction;
 public class InventoryManager extends Manager {
 
 	private final Map<UUID, KingdomInventory> opened = new HashMap<>();
+	ArrayList<UUID> inventoryHolders = new ArrayList<UUID>();
 	private final Set<KingdomInventory> inventories = new HashSet<>();
 
 	public InventoryManager() {
@@ -48,15 +50,21 @@ public class InventoryManager extends Manager {
 
 	public <T extends KingdomInventory> void opening(UUID uuid, T inventory) {
 		opened.put(uuid, inventory);
+		inventoryHolders.add(uuid);
 	}
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		//event.setCancelled(true);
+		//for (UUID e : opened.keySet()) {
+		//	Bukkit.broadcastMessage("1Player: " + e.toString());
+		//}
 		Player player = (Player) event.getWhoClicked();
 		UUID uuid = player.getUniqueId();
-		if (!opened.keySet().stream().anyMatch(test -> test.equals(uuid)))
-			return;
+		if (!opened.keySet().stream().anyMatch(test -> test.equals(uuid))) {
+			//for (UUID e : opened.keySet()) {
+			//	Bukkit.broadcastMessage("Player: " + e.toString());
+			//}
+			return;}
 		if (event.isShiftClick())
 			event.setCancelled(true);
 		Inventory clicked = event.getClickedInventory();
@@ -80,20 +88,33 @@ public class InventoryManager extends Manager {
 		UUID uuid = event.getPlayer().getUniqueId();
 		opened.values().forEach(inventory -> inventory.close(uuid));
 		opened.remove(uuid);
+		inventoryHolders.remove(uuid);
 	}
 
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
 		UUID uuid = event.getPlayer().getUniqueId();
-		Iterator<Entry<UUID, KingdomInventory>> iterator = opened.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Entry<UUID, KingdomInventory> entry = iterator.next();
-			KingdomInventory inventory = entry.getValue();
-			if (inventory.isReopening())
-				continue;
-			inventory.close(uuid);
-			iterator.remove();
+	
+//		Iterator<Entry<UUID, KingdomInventory>> iterator = opened.entrySet().iterator();
+//		while (iterator.hasNext()) {
+//			Entry<UUID, KingdomInventory> entry = iterator.next();
+//			KingdomInventory inventory = entry.getValue();
+//			if (inventory.isReopening()) 
+//				continue;
+//			inventory.close(uuid);
+//			iterator.remove();
+//		}		
+
+		for (UUID uuids : opened.keySet()) {
+			if (uuid == uuids) {
+				KingdomInventory inventory = opened.get(uuid);
+				if (inventory.isReopening()) {
+					continue;
+				}
+				inventory.close(uuid);			
+			}
 		}
+		opened.remove(uuid);
 	}
 
 	@Override
@@ -106,6 +127,7 @@ public class InventoryManager extends Manager {
 				.filter(player -> player != null)
 				.forEach(player -> player.closeInventory());
 		opened.clear();
+		inventoryHolders.clear();
 		inventories.clear();
 	}
 

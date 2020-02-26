@@ -65,11 +65,18 @@ public class CommandUnclaim extends AbstractCommand {
 				if (confirmations.contains(kingdomPlayer)) {
 					confirmations.remove(kingdomPlayer);
 					int amount = landManager.unclaimAllLand(kingdom);
+					Structure structure = landManager.getLand(kingdomPlayer.getLocation().getChunk()).getStructure();
 					if (amount == -1) {
 						new MessageBuilder("commands.unclaim.processing")
 								.setPlaceholderObject(kingdomPlayer)
 								.setKingdom(kingdom)
 								.send(player);
+						return ReturnType.FAILURE;
+					} if (structure != null && structure.getType() == StructureType.NEXUS) {
+						new MessageBuilder("commands.unclaim.cannot-unclaim-nexus")
+						.setPlaceholderObject(kingdomPlayer)
+						.setKingdom(kingdom)
+						.send(player);
 						return ReturnType.FAILURE;
 					}
 					new MessageBuilder("commands.unclaim.total")

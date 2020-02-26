@@ -185,17 +185,17 @@ chunk-changing:
     # Placeholders: %player%, %kingdom%, %lore%, %world%, %color% and %chunk% - which is the chunk the player is walking into.
     neutral-land:
         actionbar: "&a&lNeutral Land - &2(&f%kingdom%&2)"
-        message: "&aYou have entered %kingdom%'s kingdom and they are neutral with you.%newline%&7%lore%"
+        message: "&aYou have entered %kingdom% and they are neutral with you.%newline%&7%lore%"
     # Called when a user walks into an allience's kingdom.
     # Placeholders: %player%, %kingdom%, %lore%, %world%, %color% and %chunk% - which is the chunk the player is walking into.
     allience-land:
         actionbar: "&e&lAllience's Land - &6(&f%kingdom%&6)"
-        message: "&eYou have entered %kingdom%'s kingdom and they're an allience with you.%newline%&7%lore%"
+        message: "&eYou have entered %kingdom%and they're an allience with you.%newline%&7%lore%"
     # Called when a user walks into an enemy's kingdom.
     # Placeholders: %player%, %kingdom%, %lore%, %world%, %color% and %chunk% - which is the chunk the player is walking into.
     enemy-land:
         actionbar: "&c&lEnemy's Land - &4(&f%kingdom%&4)"
-        message: "&eYou have entered %kingdom%'s kingdom and they're an enemy with you!%newline%&7%lore%"
+        message: "&eYou have entered %kingdom% and they're an enemy with you!%newline%&7%lore%"
 
 # All messages relating to claiming.
 claiming:
@@ -547,6 +547,12 @@ commands:
     reload:
         description: "Reload configs"
         syntax: "/k reload"
+    sethome:
+        description: "Set kingdom home"
+        syntax: "/k sethome"
+    home:
+        description: "Travel to kingdom home"
+        syntax: "/k home"
 
 # All messages relating to invading.
 invading:
