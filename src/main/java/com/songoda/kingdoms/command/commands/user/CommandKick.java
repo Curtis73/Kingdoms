@@ -92,6 +92,7 @@ public class CommandKick extends AbstractCommand {
 		target.onKingdomLeave();
 		target.setKingdom(null);
 		target.setRank(null);
+		kingdom.removeMember(target);
 		instance.getManager(KingdomManager.class).onPlayerLeave(target, kingdom);
 		new MessageBuilder("commands.kick.kick-broadcast")
 				.setPlaceholderObject(kingdomPlayer)
