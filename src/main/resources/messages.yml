@@ -553,6 +553,11 @@ commands:
     home:
         description: "Travel to kingdom home"
         syntax: "/k home"
+    admintoggle:
+        description: "Toggle admin mode"
+        syntax: "/k admin toggle"
+        toggle-on: "Admin mode has been enabled"
+        toggle-off: "Admin mode has been disabled"
 
 # All messages relating to invading.
 invading:
