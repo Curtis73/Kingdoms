@@ -29,13 +29,13 @@ public class CommandNexus extends AbstractCommand {
 					.send(player);
 			return ReturnType.FAILURE;
 		}
-		Structure structure = kingdomPlayer.getLandAt().getStructure();
+		/*Structure structure = kingdomPlayer.getLandAt().getStructure();
 		if (structure == null || structure.getLocation().distance(kingdom.getNexusLocation()) > 1) {
 			new MessageBuilder("commands.nexus.not-nexus")
 					.setPlaceholderObject(kingdomPlayer)
 					.send(player);
 			return ReturnType.FAILURE;
-		}
+		}*/
 		instance.getManager(NexusManager.class).startNexusSet(player.getUniqueId());
 		new MessageBuilder("commands.nexus.move")
 				.setPlaceholderObject(kingdomPlayer)

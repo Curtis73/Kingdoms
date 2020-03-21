@@ -106,6 +106,7 @@ public class CommandInvite extends AbstractCommand {
 		new ListMessageBuilder(false, "commands.invite.invite")
 				.setPlaceholderObject(kingdomPlayer)
 				.replace("%input%", name)
+				.replace("%kingdom%", kingdom)
 				.setKingdom(kingdom)
 				.send(target);
 		return ReturnType.SUCCESS;
