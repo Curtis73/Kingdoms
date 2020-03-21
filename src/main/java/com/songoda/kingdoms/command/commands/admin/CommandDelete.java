@@ -2,7 +2,6 @@ package com.songoda.kingdoms.command.commands.admin;
 
 import java.util.Optional;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
