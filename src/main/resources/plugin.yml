@@ -2,8 +2,8 @@ name: FabledKingdoms
 description: Conquer lands with a mighty Kingdom!
 authors: [LimeGlass, Hex_27, Songoda, DiamondDagger, TheCreeperCow]
 main: com.songoda.kingdoms.Kingdoms
-version: @version@
-api-version: 1.13
+version: "@version@"
+api-version: 1.15
 load: POSTWORLD
 softdepend: [WorldGuard, WorldEdit, ScoreboardStats, Dynmap, PlaceholderAPI, MVdWPlaceholderAPI, GriefPrevention, Citizens, Citizens2, Multiworld, Multiverse-Core, Vault, HolographicDisplays]
 commands:
